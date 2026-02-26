@@ -241,6 +241,16 @@
             },
             {
                 type: 'app',
+                name: 'The Allocation',
+                tagline: 'Access Is Allocated.',
+                desc: 'A private distribution architecture for rare, allocation-only assets — whisky casks, hypercars, rare watches, private art. Invitation by application only.',
+                logoText: 'THE ALLOCATION',
+                link: 'https://semprog25.github.io/Theallocation/',
+                nebulaColor: 'bg-amber-700',
+                accentColor: ''
+            },
+            {
+                type: 'app',
                 name: 'GlamGenie',
                 tagline: 'Book your glow, on the Go!',
                 desc: '🇮🇳 Premium Beauty Services at Your Doorstep | Pan-India',
@@ -291,9 +301,21 @@
                              </div>
                              ${slide.nameLogo ? `<div class="mt-6"><img src="${slide.nameLogo}" alt="${slide.name} name" class="${slide.name === 'Callio' ? 'h-28 md:h-36' : 'h-8 md:h-10'} w-auto mx-auto object-contain opacity-90"></div>` : ''}
                            </div>`
+                        : slide.logoText
+                        ? `<div class="relative group flex flex-col items-center mb-12">
+                             <div class="absolute -inset-10 ${slide.nebulaColor} rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-1000"></div>
+                             <div class="relative flex flex-col items-center gap-4 py-6 px-10">
+                               <div style="width:3rem;height:1px;background:linear-gradient(to right,transparent,#f59e0b,transparent)"></div>
+                               <span style="font-family:'Georgia','Times New Roman',serif;letter-spacing:0.35em;font-size:clamp(1rem,3vw,1.5rem);background:linear-gradient(135deg,#D4AF37 0%,#F5E198 40%,#C8971F 70%,#E8CC6A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:300;">${slide.logoText}</span>
+                               <div style="width:3rem;height:1px;background:linear-gradient(to right,transparent,#f59e0b,transparent)"></div>
+                             </div>
+                           </div>`
                         : `<div class="h-32 w-32 bg-white/10 rounded-[2rem] flex items-center justify-center mx-auto backdrop-blur-md border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)] mb-12"><span class="text-5xl font-display font-bold">${slide.name[0]}</span></div>`;
                     
-                    const nameHtml = slide.logo ? '' : `<h2 class="text-6xl md:text-8xl font-display font-bold mb-6 text-white tracking-tighter drop-shadow-lg">${slide.name}</h2>`;
+                    const nameHtml = (slide.logo || slide.logoText) ? '' : `<h2 class="text-6xl md:text-8xl font-display font-bold mb-6 text-white tracking-tighter drop-shadow-lg">${slide.name}</h2>`;
+
+                    const taglineStyle = slide.logoText ? `style="background:linear-gradient(135deg,#F5E198,#D4AF37,#E8CC6A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"` : '';
+                    const taglineClass = slide.logoText ? `text-2xl md:text-4xl font-display font-bold leading-tight drop-shadow-lg` : `text-2xl md:text-4xl font-display font-bold ${slide.accentColor} leading-tight drop-shadow-lg`;
 
                     const btnHtml = slide.comingSoon
                         ? `<span class="inline-flex items-center px-8 py-4 rounded-full bg-white/5 border border-white/20 backdrop-blur-xl text-white font-display font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(255,255,255,0.1)]">COMING SOON</span>`
@@ -308,7 +330,7 @@
                             ${logoHtml}
                             ${nameHtml}
                             <div class="mb-8 max-w-3xl mx-auto">
-                                <p class="text-2xl md:text-4xl font-display font-bold ${slide.accentColor} leading-tight drop-shadow-lg">${slide.tagline}</p>
+                                <p class="${taglineClass}" ${taglineStyle}>${slide.tagline}</p>
                             </div>
                             <p class="text-lg md:text-xl font-body font-light text-white mb-12 max-w-2xl mx-auto leading-relaxed drop-shadow-md">${slide.desc}</p>
                             <div>${btnHtml}</div>
