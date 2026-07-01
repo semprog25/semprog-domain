@@ -55,7 +55,7 @@
             width: 0;
             height: 100%;
             background-color: white;
-            transition: width 6000ms linear;
+            transition: width 8000ms linear;
         }
         .slide.active ~ #slider-dots .active .progress-bar {
             width: 100%;
@@ -77,6 +77,202 @@
         }
         .animate-float {
             animation: float 3s ease-in-out infinite;
+        }
+
+        /* Dexora theme — aligned with dexora.app */
+        .dexora-slide-bg {
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 45%, rgba(61, 114, 255, 0.12) 0%, transparent 55%),
+                radial-gradient(ellipse 60% 50% at 18% 28%, rgba(124, 77, 255, 0.16) 0%, transparent 60%),
+                radial-gradient(ellipse 55% 45% at 82% 32%, rgba(255, 229, 0, 0.07) 0%, transparent 55%),
+                rgba(7, 9, 26, 0.88);
+        }
+        .dexora-gradient-yellow {
+            background: linear-gradient(90deg, #ffe500 0%, #ffd000 45%, #ffa800 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .dexora-logo-glow {
+            filter:
+                drop-shadow(0 0 12px rgba(100, 217, 255, 0.35))
+                drop-shadow(0 0 28px rgba(61, 114, 255, 0.22))
+                drop-shadow(0 0 40px rgba(255, 229, 0, 0.15));
+        }
+        .dexora-btn {
+            background: #ffe500;
+            color: #07091a;
+            border: none;
+        }
+        .dexora-btn:hover {
+            background: #ffd000;
+            color: #07091a;
+            box-shadow: 0 0 32px rgba(255, 229, 0, 0.4);
+        }
+
+        .logo-center-wrap {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-center-wrap .logo-center-inner {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-center-wrap img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            object-position: center center;
+        }
+
+        /* Consistent app slide layout */
+        .slide-app-layout {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.875rem;
+            width: 100%;
+            max-width: 40rem;
+            height: 100%;
+            padding: 5.5rem 1rem 4.5rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .slide-app-layout {
+                gap: 1rem;
+                max-width: 44rem;
+                padding-top: 6rem;
+                padding-bottom: 5rem;
+            }
+        }
+
+        .slide-app-logo-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 7.5rem;
+            flex-shrink: 0;
+        }
+
+        @media (min-width: 768px) {
+            .slide-app-logo-slot {
+                height: 8.25rem;
+            }
+        }
+
+        .slide-app-logo-slot img {
+            max-height: 100%;
+            max-width: min(88vw, 24rem);
+            width: auto;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .slide-app-logo-slot .logo-stack {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            height: 100%;
+        }
+
+        .slide-app-logo-slot .logo-stack img:first-child {
+            max-height: 4.5rem;
+        }
+
+        .slide-app-logo-slot .logo-stack img.callio-mascot {
+            max-height: 5.75rem;
+        }
+
+        @media (min-width: 768px) {
+            .slide-app-logo-slot .logo-stack img:first-child {
+                max-height: 5rem;
+            }
+
+            .slide-app-logo-slot .logo-stack img.callio-mascot {
+                max-height: 6.5rem;
+            }
+        }
+
+        .dexora-tagline {
+            font-size: clamp(1.35rem, 3.8vw, 2.35rem);
+            line-height: 1.15;
+        }
+
+        .slide-app-tagline-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 0;
+        }
+
+        .slide-app-desc-slot {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 100%;
+            min-height: 3.25rem;
+        }
+
+        .slide-app-cta-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 3.5rem;
+            flex-shrink: 0;
+            margin-top: 0.25rem;
+        }
+
+        .slide-app-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            height: 3.5rem;
+            padding: 0 2.5rem;
+            border-radius: 9999px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            font-size: 0.875rem;
+            line-height: 1;
+            white-space: nowrap;
+        }
+
+        .progress-bar.is-paused {
+            transition: none !important;
+        }
+
+        #slider-dots-wrap {
+            position: absolute;
+            bottom: 3rem;
+            left: 0;
+            right: 0;
+            z-index: 20;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            pointer-events: none;
+        }
+
+        #slider-dots-wrap > * {
+            pointer-events: auto;
+        }
+
+        #apps {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -112,13 +308,15 @@
     </header>
 
     <!-- Hero Slider -->
-    <div class="relative w-full h-screen overflow-hidden bg-transparent" id="slider-container">
+    <div class="relative w-full h-screen overflow-hidden bg-transparent" id="apps">
         <!-- Slides will be injected here by JS -->
     </div>
 
     <!-- Navigation Dots -->
-    <div class="absolute bottom-12 left-0 right-0 z-20 flex justify-center gap-4" id="slider-dots">
-        <!-- Dots will be injected here -->
+    <div id="slider-dots-wrap">
+        <div class="flex justify-center gap-4" id="slider-dots">
+            <!-- Dots will be injected here -->
+        </div>
     </div>
 
     <!-- Contact Section -->
@@ -177,6 +375,7 @@
     </footer>
 
     <script>
+        const SLIDE_DURATION = 8000;
         const slidesData = [
             {
                 type: 'intro',
@@ -188,6 +387,26 @@
             },
             {
                 type: 'app',
+                name: 'SeaDays',
+                tagline: 'Your Ultimate Cruise Planning Companion',
+                desc: 'Going on a cruise? And in need of an all-in-one planner? Your journey starts here.',
+                logo: 'https://soqkgrfzluewpuiguypm.supabase.co/storage/v1/object/sign/seadays_storage/seadays.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MTZlZmJjMy0xODA3LTRjNDItYjI4MC1mZTA1NmI4ZDlkZWEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWFkYXlzX3N0b3JhZ2Uvc2VhZGF5cy5wbmciLCJpYXQiOjE3NjQ1MzE3ODIsImV4cCI6MzM0MTMzMTc4Mn0.EVBfh3N7AW_MYdpPizc5eVqVMkzubXPrIgUWm2aAtYc',
+                link: 'https://seadays.app/',
+                nebulaColor: 'bg-red-600',
+                accentColor: 'text-red-500'
+            },
+            {
+                type: 'app',
+                name: 'Dexora',
+                theme: 'dexora',
+                tagline: 'Your offline Pokémon GO companion',
+                desc: 'Join the waitlist for early access. <span class="text-[#edf0ff]">951 species</span>, offline stats, and smarter battle tools — no signal required.',
+                logo: 'https://ncnjkrjpxkbceetnxsjl.supabase.co/storage/v1/object/public/S3/Dexora.png',
+                logoClass: 'dexora-logo-glow',
+                link: 'https://www.dexora.app/'
+            },
+            {
+                type: 'app',
                 name: 'Between Us',
                 tagline: 'Your Safe Space for Mental Wellness',
                 desc: 'Have a gossip to share or do you wanna hear some gossip? A safe space to connect and share.',
@@ -195,26 +414,6 @@
                 link: 'https://betweenus.semprog.de/',
                 nebulaColor: 'bg-purple-900',
                 accentColor: 'text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400'
-            },
-            {
-                type: 'app',
-                name: 'Broken',
-                tagline: "You're Not Broken. You're Breaking Through.",
-                desc: "Going through a breakup and need help sharing to a like minded person who's going through the same problem?",
-                logo: 'https://aktlnldjuvrhrragkzbz.supabase.co/storage/v1/object/public/brokenbucket/Broken%20White.svg',
-                link: 'https://broken.semprog.de/',
-                nebulaColor: 'bg-red-600',
-                accentColor: 'text-red-500'
-            },
-            {
-                type: 'app',
-                name: 'SeaDays',
-                tagline: 'Your Ultimate Cruise Planning Companion',
-                desc: 'Going on a cruise? And in need of an all-in-one planner? Your journey starts here.',
-                logo: 'https://soqkgrfzluewpuiguypm.supabase.co/storage/v1/object/sign/seadays_storage/seadays.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV80MTZlZmJjMy0xODA3LTRjNDItYjI4MC1mZTA1NmI4ZDlkZWEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJzZWFkYXlzX3N0b3JhZ2Uvc2VhZGF5cy5wbmciLCJpYXQiOjE3NjQ1MzE3ODIsImV4cCI6MzM0MTMzMTc4Mn0.EVBfh3N7AW_MYdpPizc5eVqVMkzubXPrIgUWm2aAtYc',
-                link: 'https://seadays.semprog.de/',
-                nebulaColor: 'bg-cyan-500',
-                accentColor: 'text-cyan-300'
             },
             {
                 type: 'app',
@@ -233,10 +432,11 @@
                 name: 'Pixxy',
                 tagline: 'Gamified Photography Learning',
                 desc: 'A photosharing app turning into a fully gamified photography learning experience. Coming Soon.',
-                logo: 'https://fjygzpjvvoqmjafnpheb.supabase.co/storage/v1/object/sign/pixxybucket/Pixxy%20Logo%20File.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lYzNjNjk2Ny0zM2Y5LTRmMmQtYTI2Yy01NDI4ZjlmNTVmMzUiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJwaXh4eWJ1Y2tldC9QaXh4eSBMb2dvIEZpbGUucG5nIiwiaWF0IjoxNzY0ODQwODY5LCJleHAiOjMzNDE2NDA4Njl9.-kUF4Mt-IZg3SNLNQ2KKOYOy1qu7yJfGyd05VXUoGlE',
+                logo: 'https://ncnjkrjpxkbceetnxsjl.supabase.co/storage/v1/object/public/S3/pixxy.png',
                 link: 'https://pixxy.semprog.de/index.html',
                 nebulaColor: 'bg-violet-800',
                 accentColor: 'text-violet-200',
+                centerLogo: true,
                 comingSoon: false
             },
             {
@@ -258,19 +458,53 @@
                 link: 'https://glamgenie.in/',
                 nebulaColor: 'bg-fuchsia-600',
                 accentColor: 'text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-400'
+            },
+            {
+                type: 'app',
+                name: 'Broken',
+                tagline: "You're Not Broken. You're Breaking Through.",
+                desc: "Going through a breakup and need help sharing to a like minded person who's going through the same problem?",
+                logo: 'https://aktlnldjuvrhrragkzbz.supabase.co/storage/v1/object/public/brokenbucket/Broken%20White.svg',
+                link: 'https://broken.semprog.de/',
+                nebulaColor: 'bg-red-600',
+                accentColor: 'text-red-500'
             }
         ];
 
-        const container = document.getElementById('slider-container');
+        const container = document.getElementById('apps');
         const dotsContainer = document.getElementById('slider-dots');
         let currentSlide = 0;
+        let isPaused = false;
+        let slideTimeoutId = null;
+        let slideStartedAt = 0;
+        let slideRemainingMs = SLIDE_DURATION;
+
+        function getVisitWebsiteBtn(link) {
+            return `<a href="${link}" target="_blank" rel="noopener noreferrer" class="slide-app-cta rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/30 hover:border-white backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
+                VISIT WEBSITE
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
+            </a>`;
+        }
+
+        function getLogoClass(slide) {
+            if (slide.logoClass) return slide.logoClass;
+            return '';
+        }
 
         function renderSlides() {
             slidesData.forEach((slide, index) => {
                 const isActive = index === 0 ? 'active' : '';
                 let contentHtml = '';
 
-                const nebulaHtml = `
+                const nebulaHtml = slide.theme === 'dexora'
+                    ? `
+                    <div class="absolute inset-0 overflow-hidden">
+                        <div class="absolute inset-0 dexora-slide-bg"></div>
+                        <div class="absolute -left-[15%] -top-[10%] w-[70vw] h-[70vw] md:w-[500px] md:h-[500px] rounded-full blur-[140px] animate-pulse-slow opacity-20" style="background:#7c4dff;"></div>
+                        <div class="absolute -right-[10%] top-[5%] w-[55vw] h-[55vw] md:w-[420px] md:h-[420px] rounded-full blur-[140px] animate-pulse-slow opacity-15" style="background:#3d72ff;"></div>
+                    </div>
+                    `
+                    : `
                     <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
                         <div class="w-[90vw] h-[90vw] md:w-[700px] md:h-[700px] ${slide.nebulaColor || 'bg-blue-600/30'} rounded-full blur-[140px] animate-pulse-slow opacity-30"></div>
                     </div>
@@ -291,49 +525,60 @@
                         </div>
                     `;
                 } else {
-                    const darkLogoClass = slide.isDarkLogo ? 'bg-gradient-to-br from-white to-gray-200 shadow-[0_0_40px_rgba(255,255,255,0.6)]' : '';
-                    
-                    const logoHtml = slide.logo 
-                        ? `<div class="relative group mb-12">
-                             <div class="absolute -inset-10 ${slide.nebulaColor} rounded-full blur-3xl opacity-50 group-hover:opacity-70 transition-opacity duration-1000"></div>
-                             <div class="relative p-6 rounded-[2rem] transition-transform duration-700 hover:scale-105 ${darkLogoClass} ${slide.animateLogo ? 'animate-float' : ''}">
-                                 <img src="${slide.logo}" alt="${slide.name}" class="relative ${slide.name === 'Callio' ? 'h-24 md:h-32' : 'h-28 md:h-36'} w-auto mx-auto object-contain drop-shadow-2xl">
+                    const logoGlowClass = slide.theme === 'dexora'
+                        ? 'bg-[#7c4dff] opacity-30 group-hover:opacity-45'
+                        : `${slide.nebulaColor} opacity-50 group-hover:opacity-70`;
+
+                    const logoSlotHtml = slide.logo
+                        ? `<div class="slide-app-logo-slot relative group${slide.centerLogo ? ' logo-center-wrap' : ''}">
+                             <div class="absolute -inset-10 ${logoGlowClass} rounded-full blur-3xl transition-opacity duration-1000 pointer-events-none"></div>
+                             <div class="relative flex items-center justify-center w-full h-full ${slide.animateLogo ? 'animate-float' : ''}${slide.centerLogo ? ' logo-center-inner' : ''}">
+                                 ${slide.nameLogo
+                                    ? `<div class="logo-stack"><img src="${slide.logo}" alt="${slide.name}" class="${getLogoClass(slide)} drop-shadow-2xl${slide.name === 'Callio' ? ' callio-mascot' : ''}"><img src="${slide.nameLogo}" alt="${slide.name} name" class="max-h-8 md:max-h-10 w-auto object-contain opacity-90"></div>`
+                                    : `<img src="${slide.logo}" alt="${slide.name}" class="${getLogoClass(slide)} drop-shadow-2xl">`}
                              </div>
-                             ${slide.nameLogo ? `<div class="mt-6"><img src="${slide.nameLogo}" alt="${slide.name} name" class="${slide.name === 'Callio' ? 'h-28 md:h-36' : 'h-8 md:h-10'} w-auto mx-auto object-contain opacity-90"></div>` : ''}
                            </div>`
                         : slide.logoText
-                        ? `<div class="relative group flex flex-col items-center mb-12">
-                             <div class="absolute -inset-10 ${slide.nebulaColor} rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-1000"></div>
-                             <div class="relative flex flex-col items-center gap-4 py-6 px-10">
+                        ? `<div class="slide-app-logo-slot relative group flex flex-col items-center justify-center">
+                             <div class="absolute -inset-10 ${slide.nebulaColor} rounded-full blur-3xl opacity-40 group-hover:opacity-60 transition-opacity duration-1000 pointer-events-none"></div>
+                             <div class="relative flex flex-col items-center gap-4 py-2 px-10">
                                <div style="width:3rem;height:1px;background:linear-gradient(to right,transparent,#f59e0b,transparent)"></div>
                                <span style="font-family:'Georgia','Times New Roman',serif;letter-spacing:0.35em;font-size:clamp(1rem,3vw,1.5rem);background:linear-gradient(135deg,#D4AF37 0%,#F5E198 40%,#C8971F 70%,#E8CC6A 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:300;">${slide.logoText}</span>
                                <div style="width:3rem;height:1px;background:linear-gradient(to right,transparent,#f59e0b,transparent)"></div>
                              </div>
                            </div>`
-                        : `<div class="h-32 w-32 bg-white/10 rounded-[2rem] flex items-center justify-center mx-auto backdrop-blur-md border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)] mb-12"><span class="text-5xl font-display font-bold">${slide.name[0]}</span></div>`;
-                    
-                    const nameHtml = (slide.logo || slide.logoText) ? '' : `<h2 class="text-6xl md:text-8xl font-display font-bold mb-6 text-white tracking-tighter drop-shadow-lg">${slide.name}</h2>`;
+                        : `<div class="slide-app-logo-slot"><div class="h-28 w-28 bg-white/10 rounded-[2rem] flex items-center justify-center backdrop-blur-md border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.1)]"><span class="text-5xl font-display font-bold">${slide.name[0]}</span></div></div>`;
 
                     const taglineStyle = slide.logoText ? `style="background:linear-gradient(135deg,#F5E198,#D4AF37,#E8CC6A);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;"` : '';
-                    const taglineClass = slide.logoText ? `text-2xl md:text-4xl font-display font-bold leading-tight drop-shadow-lg` : `text-2xl md:text-4xl font-display font-bold ${slide.accentColor} leading-tight drop-shadow-lg`;
+                    const taglineClass = slide.logoText ? `text-xl md:text-2xl font-display font-bold leading-tight drop-shadow-lg` : `text-xl md:text-2xl font-display font-bold ${slide.accentColor} leading-tight drop-shadow-lg`;
+
+                    const taglineHtml = slide.theme === 'dexora'
+                        ? `<div class="slide-app-tagline-slot">
+                                <h2 class="dexora-tagline font-display font-extrabold tracking-tight text-center px-2">
+                                    <span class="text-[#edf0ff]">Your offline </span><span class="dexora-gradient-yellow">Pokémon GO</span><span class="text-[#edf0ff]"> companion</span>
+                                </h2>
+                           </div>`
+                        : `<div class="slide-app-tagline-slot">
+                                <p class="${taglineClass}" ${taglineStyle}>${slide.tagline}</p>
+                           </div>`;
+
+                    const descClass = slide.theme === 'dexora'
+                        ? 'text-sm md:text-base font-body font-light text-[#8892b0] max-w-md leading-relaxed'
+                        : 'text-sm md:text-base font-body font-light text-white/90 max-w-xl leading-relaxed drop-shadow-md';
 
                     const btnHtml = slide.comingSoon
-                        ? `<span class="inline-flex items-center px-8 py-4 rounded-full bg-white/5 border border-white/20 backdrop-blur-xl text-white font-display font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(255,255,255,0.1)]">COMING SOON</span>`
-                        : `<a href="${slide.link}" target="_blank" class="inline-flex items-center gap-3 rounded-full bg-white/10 hover:bg-white text-white hover:text-black border border-white/30 hover:border-white font-display font-bold text-sm h-14 px-10 backdrop-blur-md transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.4)]">
-                            VISIT WEBSITE 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" x2="21" y1="14" y2="3"/></svg>
-                           </a>`;
+                        ? `<span class="slide-app-cta rounded-full bg-white/5 border border-white/20 backdrop-blur-xl text-white font-display font-bold tracking-widest uppercase shadow-[0_0_15px_rgba(255,255,255,0.1)]">COMING SOON</span>`
+                        : getVisitWebsiteBtn(slide.link);
 
                     contentHtml = `
                         ${nebulaHtml}
-                        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-4 max-w-6xl mx-auto text-white pt-12 slide-content">
-                            ${logoHtml}
-                            ${nameHtml}
-                            <div class="mb-8 max-w-3xl mx-auto">
-                                <p class="${taglineClass}" ${taglineStyle}>${slide.tagline}</p>
+                        <div class="relative z-10 slide-app-layout mx-auto text-white">
+                            ${logoSlotHtml}
+                            ${taglineHtml}
+                            <div class="slide-app-desc-slot">
+                                <p class="${descClass}">${slide.desc}</p>
                             </div>
-                            <p class="text-lg md:text-xl font-body font-light text-white mb-12 max-w-2xl mx-auto leading-relaxed drop-shadow-md">${slide.desc}</p>
-                            <div>${btnHtml}</div>
+                            <div class="slide-app-cta-slot">${btnHtml}</div>
                         </div>
                     `;
                 }
@@ -355,37 +600,125 @@
             });
         }
 
-        function goToSlide(index) {
+        function setProgressBar(index, durationMs, animateFromZero) {
+            const progressBar = dotsContainer.children[index].querySelector('.progress-bar');
+            progressBar.classList.toggle('is-paused', isPaused);
+            progressBar.style.transition = 'none';
+            progressBar.style.width = animateFromZero ? '0' : progressBar.style.width || '0';
+            void progressBar.offsetWidth;
+            if (!isPaused) {
+                progressBar.style.transition = `width ${durationMs}ms linear`;
+                progressBar.style.width = '100%';
+            }
+        }
+
+        function clearSlideTimer() {
+            if (slideTimeoutId) {
+                clearTimeout(slideTimeoutId);
+                slideTimeoutId = null;
+            }
+        }
+
+        function scheduleNextSlide() {
+            clearSlideTimer();
+            if (isPaused) return;
+            slideStartedAt = Date.now();
+            slideTimeoutId = setTimeout(() => {
+                goToSlide((currentSlide + 1) % slidesData.length);
+            }, slideRemainingMs);
+        }
+
+        function pauseSlides() {
+            if (isPaused) return;
+            isPaused = true;
+            clearSlideTimer();
+            slideRemainingMs = Math.max(0, slideRemainingMs - (Date.now() - slideStartedAt));
+            const progressBar = dotsContainer.children[currentSlide].querySelector('.progress-bar');
+            progressBar.classList.add('is-paused');
+            progressBar.style.transition = 'none';
+        }
+
+        function resumeSlides() {
+            if (!isPaused) return;
+            isPaused = false;
+            const progressBar = dotsContainer.children[currentSlide].querySelector('.progress-bar');
+            progressBar.classList.remove('is-paused');
+            const parentWidth = progressBar.parentElement.offsetWidth || 1;
+            const percentComplete = progressBar.offsetWidth / parentWidth;
+            slideRemainingMs = Math.max(500, Math.round(SLIDE_DURATION * (1 - percentComplete)));
+            progressBar.style.transition = `width ${slideRemainingMs}ms linear`;
+            progressBar.style.width = '100%';
+            scheduleNextSlide();
+        }
+
+        function togglePause() {
+            if (isPaused) resumeSlides();
+            else pauseSlides();
+        }
+
+        function goToPrevSlide() {
+            goToSlide((currentSlide - 1 + slidesData.length) % slidesData.length);
+        }
+
+        function goToNextSlide() {
+            goToSlide((currentSlide + 1) % slidesData.length);
+        }
+
+        function goToSlide(index, resetTimer = true) {
+            clearSlideTimer();
             const slides = document.querySelectorAll('.slide');
             const dots = dotsContainer.children;
-            
+
             slides[currentSlide].classList.remove('active');
             dots[currentSlide].classList.remove('active');
             dots[currentSlide].querySelector('.progress-bar').style.width = '0';
-            
+
             currentSlide = index;
-            
+
             slides[currentSlide].classList.add('active');
             dots[currentSlide].classList.add('active');
-            
-            const progressBar = dots[currentSlide].querySelector('.progress-bar');
-            progressBar.style.transition = 'none';
-            progressBar.style.width = '0';
-            void progressBar.offsetWidth;
-            progressBar.style.transition = 'width 6000ms linear';
-            progressBar.style.width = '100%';
+
+            if (resetTimer) {
+                slideRemainingMs = SLIDE_DURATION;
+            }
+
+            setProgressBar(currentSlide, slideRemainingMs, true);
+            if (!isPaused) {
+                scheduleNextSlide();
+            }
         }
+
+        container.addEventListener('click', (event) => {
+            if (event.target.closest('a, button, #slider-dots-wrap')) return;
+            togglePause();
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.target.matches('input, textarea, select, [contenteditable="true"]')) return;
+
+            if (event.code === 'Space') {
+                event.preventDefault();
+                togglePause();
+                return;
+            }
+
+            if (event.code === 'ArrowLeft') {
+                event.preventDefault();
+                goToPrevSlide();
+                return;
+            }
+
+            if (event.code === 'ArrowRight') {
+                event.preventDefault();
+                goToNextSlide();
+            }
+        });
 
         renderSlides();
         setTimeout(() => {
-            const firstBar = dotsContainer.children[0].querySelector('.progress-bar');
-            firstBar.style.width = '100%';
+            setProgressBar(0, SLIDE_DURATION, true);
+            scheduleNextSlide();
         }, 100);
-
-        setInterval(() => {
-            const next = (currentSlide + 1) % slidesData.length;
-            goToSlide(next);
-        }, 6000);
 
     </script>
 </body>
