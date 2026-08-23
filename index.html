@@ -110,6 +110,45 @@
             box-shadow: 0 0 32px rgba(255, 229, 0, 0.4);
         }
 
+        /* Anspry theme — black & yellow */
+        .anspry-slide-bg {
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 45%, rgba(255, 184, 0, 0.14) 0%, transparent 55%),
+                radial-gradient(ellipse 55% 45% at 20% 30%, rgba(255, 184, 0, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 80% 70%, rgba(255, 214, 80, 0.06) 0%, transparent 55%),
+                #050505;
+        }
+        .anspry-gradient-yellow {
+            background: linear-gradient(90deg, #FFB800 0%, #FFD650 50%, #FFB800 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .anspry-logo-glow {
+            filter:
+                drop-shadow(0 0 14px rgba(255, 184, 0, 0.4))
+                drop-shadow(0 0 32px rgba(255, 184, 0, 0.2));
+        }
+        .anspry-tagline {
+            font-size: clamp(1.35rem, 3.8vw, 2.35rem);
+            line-height: 1.15;
+        }
+
+        /* Skister theme — alpine green */
+        .skister-slide-bg {
+            background:
+                radial-gradient(ellipse 70% 60% at 50% 45%, rgba(34, 139, 34, 0.18) 0%, transparent 55%),
+                radial-gradient(ellipse 55% 45% at 18% 28%, rgba(45, 237, 106, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse 50% 40% at 82% 70%, rgba(34, 197, 94, 0.08) 0%, transparent 55%),
+                #070908;
+        }
+        .skister-accent {
+            background: linear-gradient(90deg, #2ded6a 0%, #22c55e 55%, #1aa34a 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
         .logo-center-wrap {
             display: flex;
             width: 100%;
@@ -160,13 +199,13 @@
             align-items: center;
             justify-content: center;
             width: 100%;
-            height: 7.5rem;
+            height: 8.5rem;
             flex-shrink: 0;
         }
 
         @media (min-width: 768px) {
             .slide-app-logo-slot {
-                height: 8.25rem;
+                height: 9.25rem;
             }
         }
 
@@ -407,6 +446,27 @@
             },
             {
                 type: 'app',
+                name: 'Anspry',
+                theme: 'anspry',
+                tagline: "Find what you're owed.",
+                desc: 'A money-recovery and claim-assistance platform — refunds, compensation, and valid challenges across everyday problems.',
+                logo: 'https://anspry.de/anspry-logo-mark.png',
+                logoClass: 'anspry-logo-glow',
+                link: 'https://anspry.de/'
+            },
+            {
+                type: 'app',
+                name: 'Skister',
+                theme: 'skister',
+                tagline: 'Share ski gear with people you trust',
+                desc: 'The simplest way to share ski gear with friends, family, and clubs you trust — camping and hiking gear too. Invite-only, free within your private network.',
+                logo: 'https://ayomhapkzckbhgwxenwr.supabase.co/storage/v1/object/public/SkisterApp/SkisterAppPro227.png',
+                nameLogo: 'https://ayomhapkzckbhgwxenwr.supabase.co/storage/v1/object/public/SkisterApp/SkisterLogoWeb.png',
+                link: 'https://skister.app/',
+                animateLogo: true
+            },
+            {
+                type: 'app',
                 name: 'Between Us',
                 tagline: 'Your Safe Space for Mental Wellness',
                 desc: 'Have a gossip to share or do you wanna hear some gossip? A safe space to connect and share.',
@@ -504,6 +564,20 @@
                         <div class="absolute -right-[10%] top-[5%] w-[55vw] h-[55vw] md:w-[420px] md:h-[420px] rounded-full blur-[140px] animate-pulse-slow opacity-15" style="background:#3d72ff;"></div>
                     </div>
                     `
+                    : slide.theme === 'anspry'
+                    ? `
+                    <div class="absolute inset-0 overflow-hidden">
+                        <div class="absolute inset-0 anspry-slide-bg"></div>
+                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] md:w-[700px] md:h-[700px] rounded-full blur-[140px] animate-pulse-slow opacity-25" style="background:#FFB800;"></div>
+                    </div>
+                    `
+                    : slide.theme === 'skister'
+                    ? `
+                    <div class="absolute inset-0 overflow-hidden">
+                        <div class="absolute inset-0 skister-slide-bg"></div>
+                        <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vw] md:w-[700px] md:h-[700px] rounded-full blur-[140px] animate-pulse-slow opacity-25" style="background:#228B22;"></div>
+                    </div>
+                    `
                     : `
                     <div class="absolute inset-0 flex items-center justify-center overflow-hidden">
                         <div class="w-[90vw] h-[90vw] md:w-[700px] md:h-[700px] ${slide.nebulaColor || 'bg-blue-600/30'} rounded-full blur-[140px] animate-pulse-slow opacity-30"></div>
@@ -527,6 +601,10 @@
                 } else {
                     const logoGlowClass = slide.theme === 'dexora'
                         ? 'bg-[#7c4dff] opacity-30 group-hover:opacity-45'
+                        : slide.theme === 'anspry'
+                        ? 'bg-[#FFB800] opacity-35 group-hover:opacity-50'
+                        : slide.theme === 'skister'
+                        ? 'bg-[#228B22] opacity-40 group-hover:opacity-55'
                         : `${slide.nebulaColor} opacity-50 group-hover:opacity-70`;
 
                     const logoSlotHtml = slide.logo
@@ -534,7 +612,7 @@
                              <div class="absolute -inset-10 ${logoGlowClass} rounded-full blur-3xl transition-opacity duration-1000 pointer-events-none"></div>
                              <div class="relative flex items-center justify-center w-full h-full ${slide.animateLogo ? 'animate-float' : ''}${slide.centerLogo ? ' logo-center-inner' : ''}">
                                  ${slide.nameLogo
-                                    ? `<div class="logo-stack"><img src="${slide.logo}" alt="${slide.name}" class="${getLogoClass(slide)} drop-shadow-2xl${slide.name === 'Callio' ? ' callio-mascot' : ''}"><img src="${slide.nameLogo}" alt="${slide.name} name" class="max-h-8 md:max-h-10 w-auto object-contain opacity-90"></div>`
+                                    ? `<div class="logo-stack"><img src="${slide.logo}" alt="${slide.name}" class="${getLogoClass(slide)} drop-shadow-2xl${slide.name === 'Callio' || slide.name === 'Skister' ? ' callio-mascot' : ''}"><img src="${slide.nameLogo}" alt="${slide.name} name" class="max-h-8 md:max-h-10 w-auto object-contain opacity-90"></div>`
                                     : `<img src="${slide.logo}" alt="${slide.name}" class="${getLogoClass(slide)} drop-shadow-2xl">`}
                              </div>
                            </div>`
@@ -558,12 +636,28 @@
                                     <span class="text-[#edf0ff]">Your offline </span><span class="dexora-gradient-yellow">Pokémon GO</span><span class="text-[#edf0ff]"> companion</span>
                                 </h2>
                            </div>`
+                        : slide.theme === 'anspry'
+                        ? `<div class="slide-app-tagline-slot">
+                                <h2 class="anspry-tagline font-display font-extrabold tracking-tight text-center px-2">
+                                    <span class="anspry-gradient-yellow">Find what you're owed.</span>
+                                </h2>
+                           </div>`
+                        : slide.theme === 'skister'
+                        ? `<div class="slide-app-tagline-slot">
+                                <h2 class="text-xl md:text-2xl font-display font-extrabold tracking-tight text-center px-2">
+                                    <span class="skister-accent">${slide.tagline}</span>
+                                </h2>
+                           </div>`
                         : `<div class="slide-app-tagline-slot">
                                 <p class="${taglineClass}" ${taglineStyle}>${slide.tagline}</p>
                            </div>`;
 
                     const descClass = slide.theme === 'dexora'
                         ? 'text-sm md:text-base font-body font-light text-[#8892b0] max-w-md leading-relaxed'
+                        : slide.theme === 'anspry'
+                        ? 'text-sm md:text-base font-body font-light text-white/75 max-w-md leading-relaxed'
+                        : slide.theme === 'skister'
+                        ? 'text-sm md:text-base font-body font-light text-[#9aaba0] max-w-md leading-relaxed'
                         : 'text-sm md:text-base font-body font-light text-white/90 max-w-xl leading-relaxed drop-shadow-md';
 
                     const btnHtml = slide.comingSoon
