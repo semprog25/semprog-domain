@@ -301,13 +301,187 @@
             right: 0;
             z-index: 20;
             display: flex;
-            justify-content: center;
-            gap: 1rem;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.75rem;
             pointer-events: none;
         }
 
         #slider-dots-wrap > * {
             pointer-events: auto;
+        }
+
+        #slider-thumbnails {
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-end;
+            gap: 0.625rem;
+            max-width: min(96vw, 56rem);
+            padding: 0.75rem 1rem;
+            border-radius: 1.25rem;
+            background: rgba(5, 5, 5, 0.72);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            opacity: 0;
+            transform: translateY(0.75rem);
+            visibility: hidden;
+            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            overflow-x: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        #slider-thumbnails::-webkit-scrollbar {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #slider-thumbnails {
+                justify-content: center;
+            }
+        }
+
+        #slider-dots-wrap:hover #slider-thumbnails,
+        #slider-dots-wrap:focus-within #slider-thumbnails {
+            opacity: 1;
+            transform: translateY(0);
+            visibility: visible;
+        }
+
+        .slider-thumb {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.375rem;
+            width: 4.5rem;
+            padding: 0.5rem 0.375rem 0.375rem;
+            border-radius: 0.875rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.04);
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .slider-thumb:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.22);
+            transform: translateY(-2px);
+        }
+
+        .slider-thumb.active {
+            border-color: rgba(255, 255, 255, 0.45);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.12);
+        }
+
+        .slider-thumb-preview {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.75rem;
+            height: 2.75rem;
+            border-radius: 0.625rem;
+            background: rgba(255, 255, 255, 0.06);
+            overflow: hidden;
+        }
+
+        .slider-thumb-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .slider-thumb-preview span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.625rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-align: center;
+            line-height: 1.1;
+            color: rgba(255, 255, 255, 0.9);
+            padding: 0 0.125rem;
+        }
+
+        .slider-thumb-label {
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.625rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.65);
+            text-align: center;
+            line-height: 1.2;
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .slider-thumb.active .slider-thumb-label {
+            color: white;
+        }
+
+        .slider-nav-btn {
+            position: absolute;
+            top: 50%;
+            z-index: 25;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(5, 5, 5, 0.45);
+            color: white;
+            backdrop-filter: blur(12px);
+            cursor: pointer;
+            transform: translateY(-50%);
+            opacity: 0.55;
+            transition: opacity 0.25s ease, background 0.25s ease, border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .slider-nav-btn:hover {
+            opacity: 1;
+            background: rgba(255, 255, 255, 0.12);
+            border-color: rgba(255, 255, 255, 0.35);
+            box-shadow: 0 0 24px rgba(255, 255, 255, 0.12);
+        }
+
+        .slider-nav-btn:focus-visible {
+            outline: 2px solid rgba(255, 255, 255, 0.6);
+            outline-offset: 2px;
+            opacity: 1;
+        }
+
+        #slider-nav-prev {
+            left: 1rem;
+        }
+
+        #slider-nav-next {
+            right: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .slider-nav-btn {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+
+            #slider-nav-prev {
+                left: 2rem;
+            }
+
+            #slider-nav-next {
+                right: 2rem;
+            }
+
+            .slider-thumb {
+                width: 5rem;
+            }
+
+            .slider-thumb-preview {
+                width: 3rem;
+                height: 3rem;
+            }
         }
 
         #apps {
@@ -349,10 +523,31 @@
     <!-- Hero Slider -->
     <div class="relative w-full h-screen overflow-hidden bg-transparent" id="apps">
         <!-- Slides will be injected here by JS -->
+        <button
+            type="button"
+            id="slider-nav-prev"
+            class="slider-nav-btn"
+            aria-label="Previous slide"
+            tabindex="0"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+        </button>
+        <button
+            type="button"
+            id="slider-nav-next"
+            class="slider-nav-btn"
+            aria-label="Next slide"
+            tabindex="0"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+        </button>
     </div>
 
     <!-- Navigation Dots -->
     <div id="slider-dots-wrap">
+        <div id="slider-thumbnails" role="tablist" aria-label="Slide thumbnails">
+            <!-- Thumbnails will be injected here -->
+        </div>
         <div class="flex justify-center gap-4" id="slider-dots">
             <!-- Dots will be injected here -->
         </div>
@@ -471,7 +666,7 @@
                 tagline: 'Your Safe Space for Mental Wellness',
                 desc: 'Have a gossip to share or do you wanna hear some gossip? A safe space to connect and share.',
                 logo: 'https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/sign/betweenus3/betweenus.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV9lMTYxZDg1My1iMGRlLTRkNjQtYTQxYS0xNTY5MmFmMGJhNWEiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJiZXR3ZWVudXMzL2JldHdlZW51cy5wbmciLCJpYXQiOjE3NjQ1MzE5NjMsImV4cCI6MzM0MTMzMTk2M30.Y2YtSYTaspr-sUaFpli7ghszWt8nZjictCRJX2wkbGw',
-                link: 'https://betweenus.semprog.de/',
+                link: 'https://betweenus.fun/',
                 nebulaColor: 'bg-purple-900',
                 accentColor: 'text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-orange-400'
             },
@@ -482,7 +677,7 @@
                 desc: 'Callio protects your privacy by displaying random names in call logs instead of real caller information.',
                 logo: 'https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Storage/Callio.png',
                 nameLogo: 'https://qoqbdiixztolvtcjdnle.supabase.co/storage/v1/object/public/Storage/Calli0logo.png',
-                link: 'https://callio.semprog.de/',
+                link: 'https://trycallio.app/',
                 nebulaColor: 'bg-[#C084FC]',
                 accentColor: 'text-purple-300',
                 animateLogo: true
@@ -533,6 +728,9 @@
 
         const container = document.getElementById('apps');
         const dotsContainer = document.getElementById('slider-dots');
+        const thumbnailsContainer = document.getElementById('slider-thumbnails');
+        const prevButton = document.getElementById('slider-nav-prev');
+        const nextButton = document.getElementById('slider-nav-next');
         let currentSlide = 0;
         let isPaused = false;
         let slideTimeoutId = null;
@@ -549,6 +747,35 @@
         function getLogoClass(slide) {
             if (slide.logoClass) return slide.logoClass;
             return '';
+        }
+
+        function getSlideLabel(slide) {
+            if (slide.type === 'intro') return 'Intro';
+            return slide.name;
+        }
+
+        function getThumbnailPreviewHtml(slide) {
+            if (slide.type === 'intro') {
+                return '<span>SP</span>';
+            }
+
+            if (slide.logo) {
+                return `<img src="${slide.logo}" alt="" loading="lazy">`;
+            }
+
+            if (slide.logoText) {
+                return `<span>${slide.logoText.split(' ')[0]}</span>`;
+            }
+
+            return `<span>${slide.name[0]}</span>`;
+        }
+
+        function updateThumbnailStates() {
+            Array.from(thumbnailsContainer.children).forEach((thumb, index) => {
+                const isActive = index === currentSlide;
+                thumb.classList.toggle('active', isActive);
+                thumb.setAttribute('aria-selected', isActive ? 'true' : 'false');
+            });
         }
 
         function renderSlides() {
@@ -691,6 +918,19 @@
                 dot.innerHTML = `<div class="progress-bar"></div>`;
                 dot.onclick = () => goToSlide(index);
                 dotsContainer.appendChild(dot);
+
+                const thumb = document.createElement('button');
+                thumb.type = 'button';
+                thumb.className = `slider-thumb ${index === 0 ? 'active' : ''}`;
+                thumb.setAttribute('role', 'tab');
+                thumb.setAttribute('aria-label', `Go to ${getSlideLabel(slide)}`);
+                thumb.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
+                thumb.innerHTML = `
+                    <span class="slider-thumb-preview">${getThumbnailPreviewHtml(slide)}</span>
+                    <span class="slider-thumb-label">${getSlideLabel(slide)}</span>
+                `;
+                thumb.addEventListener('click', () => goToSlide(index));
+                thumbnailsContainer.appendChild(thumb);
             });
         }
 
@@ -777,13 +1017,27 @@
             }
 
             setProgressBar(currentSlide, slideRemainingMs, true);
+            updateThumbnailStates();
             if (!isPaused) {
                 scheduleNextSlide();
             }
         }
 
+        const handlePrevClick = (event) => {
+            event.stopPropagation();
+            goToPrevSlide();
+        };
+
+        const handleNextClick = (event) => {
+            event.stopPropagation();
+            goToNextSlide();
+        };
+
+        prevButton.addEventListener('click', handlePrevClick);
+        nextButton.addEventListener('click', handleNextClick);
+
         container.addEventListener('click', (event) => {
-            if (event.target.closest('a, button, #slider-dots-wrap')) return;
+            if (event.target.closest('a, button, #slider-dots-wrap, .slider-nav-btn')) return;
             togglePause();
         });
 
